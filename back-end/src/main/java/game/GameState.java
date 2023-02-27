@@ -30,13 +30,22 @@ public class GameState {
     @Override
     public String toString() {
         if (this.winner == null) {
-            return "{ \"cells\": " + Arrays.toString(this.cells) + "," +
-                     "\"turn\": " + this.turn + "," +
-                     "\"winner\": " + null + "}";
+            return """
+                    {
+                        "cells": %s,
+                        "turn": %d,
+                        "winner": null
+                    }
+                    """.formatted(Arrays.toString(this.cells), this.turn);
         } else {
-            return "{ \"cells\": " + Arrays.toString(this.cells) + "," +
-                     "\"turn\": " + this.turn + "," +
-                     "\"winner\": " + this.winner.value + "}";
+            return """
+                    {
+                        "cells": %s,
+                        "turn": %d,
+                        "winner": %d
+                    }
+                   """.formatted(Arrays.toString(this.cells), this.turn, 
+                                this.winner.value);
         }
     }
 
@@ -93,9 +102,13 @@ class Cell {
 
     @Override
     public String toString() {
-        return "{ \"text\": \"" + this.text + "\"," +
-                " \"playable\": " + this.playable + "," +
-                " \"x\": " + this.x + "," +
-                " \"y\": " + this.y + " }" ;
+        return """
+            {
+                "text": "%s",
+                "playable": %b,
+                "x": %d,
+                "y": %d 
+            }
+            """.formatted(this.text, this.playable, this.x, this.y);
     }
 }
